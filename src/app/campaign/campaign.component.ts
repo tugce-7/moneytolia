@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CampaignService } from '../core/api/campaign/campaign.service';
-import { Campaign } from '../core/api/campaign/campaign.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-campaign',
@@ -17,5 +17,22 @@ export class CampaignComponent {
 
   trackById(index: number, item: any): number {
     return item.id;
+  }
+
+  deleteCampaign(id: number) {
+    Swal.fire({
+      title: 'Emin misiniz?',
+      text: 'Bu kampanya silinecektir!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Evet, sil!',
+      cancelButtonText: 'İptal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.campaignService.deleteCampaign(id);
+      }
+    });
   }
 }

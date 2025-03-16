@@ -28,11 +28,29 @@ export class CampaignService {
         points: 10,
         date: new Date().toLocaleDateString(),
       };
-      this.campaigns.set([...this.campaigns(), sampleCampaign]); // Yeni kampanyayı ekliyoruz
+      this.campaigns.set([...this.campaigns(), sampleCampaign]);
       this.saveToLocalStorage();
     }
   }
   getCampaigns() {
     return this.campaigns;
+  }
+
+  addCampaign(title: string, description: string) {
+    const newCampaign: Campaign = {
+      id: Date.now(),
+      title,
+      description,
+      points: 0,
+      date: new Date().toLocaleDateString(),
+    };
+    this.campaigns.set([...this.campaigns(), newCampaign]);
+    this.saveToLocalStorage();
+  }
+
+  deleteCampaign(id: number) {
+    const filteredCampaigns = this.campaigns().filter(campaign => campaign.id !== id);
+    this.campaigns.set(filteredCampaigns);
+    this.saveToLocalStorage();
   }
 }
