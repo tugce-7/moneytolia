@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CampaignComponent } from './campaign/campaign.component';
 import { CampaignCreateComponent } from './campaign/campaign-create/campaign-create.component';
+import { authGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,10 +23,12 @@ export const routes: Routes = [
             {
                 path: 'campaigns',
                 component: CampaignComponent,
+                canActivate: [authGuard]
             },
             {
                 path: 'campaign-create',
-                component: CampaignCreateComponent
+                component: CampaignCreateComponent,
+                canActivate: [authGuard]
             }
         ]
     }
