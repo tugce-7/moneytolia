@@ -1,1 +1,88 @@
-<p>campaign works!</p>
+@if (campaigns().length > 0;) {
+<ul>
+    @for (campaign of campaigns(); track trackById) {
+
+    <div class="grid grid-cols-4 gap-4 content">
+        <div
+            class="relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+            <div class="relative p-2.5 md:w-1/5 shrink-0 overflow-hidden">
+                <div
+                    class="mb-4 rounded-full bg-teal-600 py-0.5 px-2.5 border border-transparent text-xs text-white transition-all shadow-sm w-20 text-center">
+                    {{ campaign.points }}
+                </div>
+            </div>
+            <div class="p-6">
+                <h4 class="mb-2 text-slate-800 text-xl font-semibold">
+                    {{ campaign.title }}
+                </h4>
+                <p class="mb-8 text-slate-600 leading-normal font-light">
+                    {{ campaign.description }}
+                </p>
+                <div class="group my-3 inline-flex flex-wrap justify-center items-center gap-2">
+                    <button
+                        class="rounded-full border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        type="button">
+                        +
+                    </button>
+                    <button
+                        class="rounded-full border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        type="button">
+                        -
+                    </button>
+                    <div class="flex flex-col ml-3 text-sm">
+                        <span class="text-slate-600">
+                            {{ campaign.date }}
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    } @empty {
+    <li>Kampanya bulunamadı.</li>
+    }
+</ul>
+}
+
+
+<!-- <div class="grid grid-cols-4 gap-4 content">
+    <div
+        class="relative flex flex-col md:flex-row w-full my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+        <div class="relative p-2.5 md:w-1/5 shrink-0 overflow-hidden">
+            <div
+                class="mb-4 rounded-full bg-teal-600 py-0.5 px-2.5 border border-transparent text-xs text-white transition-all shadow-sm w-20 text-center">
+
+                ps </div>
+        </div>
+        <div class="p-6">
+            <h4 class="mb-2 text-slate-800 text-xl font-semibold">
+                Lyft launching cross-platform service this week
+            </h4>
+            <p class="mb-8 text-slate-600 leading-normal font-light">
+                Like so many organizations these days, Autodesk is a company in
+                transition. It was until recently a traditional boxed software company
+                selling licenses. Yet its own business model disruption is only part
+                of the story
+            </p>
+            <div class="group my-3 inline-flex flex-wrap justify-center items-center gap-2">
+                <button
+                    class="rounded-full border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    type="button">
+                    +
+                </button>
+                <button
+                    class="rounded-full border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    type="button">
+                    -
+                </button>
+                <div class="flex flex-col ml-3 text-sm">
+                    <span class="text-slate-600">
+                        January 10, 2024
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> -->
