@@ -18,8 +18,7 @@ export class CampaignComponent {
 
   private readonly dialog = inject(MatDialog);
 
-  constructor() {
-  }
+  constructor() { }
 
   ngAfterViewInit() {
     initFlowbite();

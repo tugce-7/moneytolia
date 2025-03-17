@@ -1,4 +1,4 @@
-import { Component, Input, input, InputSignal, OnInit, output, signal } from '@angular/core';
+import { Component, inject, Input, input, InputSignal, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CampaignService } from '../../core/api/campaign/campaign.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,10 @@ import { Campaign } from '../../core/api/campaign/campaign.model';
   styleUrl: './campaign-create.component.scss'
 })
 export class CampaignCreateComponent implements OnInit {
+  private readonly fb = inject(FormBuilder);
+  private readonly campaignService = inject(CampaignService);
+  private readonly router = inject(Router);
+
   campaignForm: FormGroup;
 
   isEditMode = input<boolean>(false);
@@ -19,7 +23,7 @@ export class CampaignCreateComponent implements OnInit {
 
   onUpdatedCampaign = output<boolean>();
 
-  constructor(private fb: FormBuilder, private campaignService: CampaignService, private router: Router) {
+  constructor() {
     this.campaignForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -36,8 +40,6 @@ export class CampaignCreateComponent implements OnInit {
         title: this.campaign()?.title,
         description: this.campaign()?.description,
         id: this.campaign()?.id,
-        // score: this.campaign()?.score,
-        // campaignDate: moment(this.campaign()?.campaignDate),
       });
     }
   }

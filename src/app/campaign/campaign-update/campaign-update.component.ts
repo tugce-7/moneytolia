@@ -1,7 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CampaignService } from '../../core/api/campaign/campaign.service';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CampaignCreateComponent } from "../campaign-create/campaign-create.component";
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Campaign } from '../../core/api/campaign/campaign.model';
