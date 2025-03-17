@@ -52,4 +52,13 @@ export class CampaignComponent {
       data: campaign
     });
   }
+
+  increasePoints(id: number) {
+    this.campaignService.updatePoints(id, 1);
+  }
+
+  decreasePoints(id: number) {
+    this.campaignService.updatePoints(id, -1);
+  }
+
 }

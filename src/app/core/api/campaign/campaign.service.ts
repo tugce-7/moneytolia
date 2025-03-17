@@ -65,4 +65,16 @@ export class CampaignService {
     this.campaigns.set(updatedCampaigns);
     this.saveToLocalStorage();
   }
+
+  updatePoints(id: number, change: number) {
+    this.campaigns.update(c => {
+      const campaign = c.find(camp => camp.id === id);
+      if (campaign) {
+        const newPoints = campaign.points + change;
+        campaign.points = newPoints < 0 ? 0 : newPoints;
+      }
+      return [...c];
+    });
+    this.saveToLocalStorage();
+  }
 }
