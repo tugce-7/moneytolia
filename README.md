@@ -2,6 +2,11 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.2.
 
+Log in with the following test credentials:
+
+**Username:** admin\
+**Password:** admin
+
 ## Development server
 
 To start a local development server, run:
