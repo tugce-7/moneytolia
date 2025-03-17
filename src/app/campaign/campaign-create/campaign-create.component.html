@@ -1,4 +1,8 @@
+@if(isEditMode()){
+<h3 class="text-3xl font-bold dark:text-white max-w-md mx-auto mb-5">Kampanyayı Güncelle</h3>
+}@else{
 <h3 class="text-3xl font-bold dark:text-white max-w-md mx-auto mb-5">Kampanya Oluştur</h3>
+}
 
 <form class="max-w-md mx-auto" [formGroup]="campaignForm" (ngSubmit)="onSubmit()">
     <div class="relative z-0 w-full mb-5 group">
@@ -17,6 +21,11 @@
             placeholder="Lütfen açıklama giriniz..."></textarea>
     </div>
 
+    @if(isEditMode()){
+    <button type="submit" [disabled]="campaignForm.invalid"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Güncelle</button>
+    }@else{
     <button type="submit" [disabled]="campaignForm.invalid"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Oluştur</button>
+    }
 </form>

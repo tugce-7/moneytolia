@@ -38,7 +38,7 @@ export class CampaignService {
 
   addCampaign(title: string, description: string) {
     const newCampaign: Campaign = {
-      id: Date.now(),
+      id: this.campaigns().length + 1,
       title,
       description,
       points: 0,
@@ -51,6 +51,18 @@ export class CampaignService {
   deleteCampaign(id: number) {
     const filteredCampaigns = this.campaigns().filter(campaign => campaign.id !== id);
     this.campaigns.set(filteredCampaigns);
+    this.saveToLocalStorage();
+  }
+
+  updateCampaign(updatedCampaign: Campaign) {
+    const updatedCampaigns = this.campaigns().map(campaign =>
+      campaign.id === updatedCampaign.id ? {
+        ...campaign,
+        title: updatedCampaign.title,
+        description: updatedCampaign.description
+      } : campaign
+    );
+    this.campaigns.set(updatedCampaigns);
     this.saveToLocalStorage();
   }
 }

@@ -1,6 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CampaignService } from '../core/api/campaign/campaign.service';
 import Swal from 'sweetalert2';
+import { initFlowbite } from 'flowbite';
+import { MatDialog } from '@angular/material/dialog';
+import { CampaignUpdateComponent } from './campaign-update/campaign-update.component';
+import { Campaign } from '../core/api/campaign/campaign.model';
 
 @Component({
   selector: 'app-campaign',
@@ -12,7 +16,13 @@ export class CampaignComponent {
   private readonly campaignService = inject(CampaignService);
   campaigns = this.campaignService.getCampaigns();
 
+  private readonly dialog = inject(MatDialog);
+
   constructor() {
+  }
+
+  ngAfterViewInit() {
+    initFlowbite();
   }
 
   trackById(index: number, item: any): number {
@@ -33,6 +43,13 @@ export class CampaignComponent {
       if (result.isConfirmed) {
         this.campaignService.deleteCampaign(id);
       }
+    });
+  }
+
+  updateCampaign(campaign: Campaign) {
+    console.log(this.campaigns())
+    this.dialog.open(CampaignUpdateComponent, {
+      data: campaign
     });
   }
 }
